@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CollectionTestSuite {
     @Before
@@ -23,10 +24,11 @@ public class CollectionTestSuite {
     public void testCaseOddNumbersExterminatorEmptyList() {
         //Given
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        List<Integer> list = new ArrayList<>();
         //When
-        ArrayList<Integer> list = new ArrayList<>();
+        final List<Integer> onlyOddNumbers = oddNumbersExterminator.exterminate(list);
         //Then
-        Assert.assertEquals(oddNumbersExterminator.exterminate(list), list);
+        Assert.assertEquals(onlyOddNumbers, list);
     }
 
     @Test
@@ -34,17 +36,19 @@ public class CollectionTestSuite {
         //Given
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
 
-        ArrayList<Integer> sampleList = new ArrayList<>();
+        List<Integer> sampleList = new ArrayList<>();
         sampleList.add(1);
         sampleList.add(2);
         sampleList.add(3);
         sampleList.add(4);
         sampleList.add(5);
+
+        List<Integer> expectedList = new ArrayList<>();
+        expectedList.add(2);
+        expectedList.add(4);
         //When
-        ArrayList<Integer> resultList = new ArrayList<>();
-        resultList.add(2);
-        resultList.add(4);
+        final List<Integer> onlyOddNumbers = oddNumbersExterminator.exterminate(sampleList);
         //Then
-        Assert.assertEquals(oddNumbersExterminator.exterminate(sampleList), resultList);
+        Assert.assertEquals(onlyOddNumbers, expectedList);
     }
 }

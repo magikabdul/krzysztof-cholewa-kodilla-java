@@ -5,8 +5,8 @@ import java.util.List;
 
 public class OddNumbersExterminator {
 
-    public ArrayList<Integer> exterminate(ArrayList<Integer> numbers) {
-        ArrayList<Integer> list = new ArrayList<>();
+    public List<Integer> exterminate(List<Integer> numbers) {
+        List<Integer> list = new ArrayList<>();
 
         for (Integer l : numbers) {
             if (l % 2 == 0) {
