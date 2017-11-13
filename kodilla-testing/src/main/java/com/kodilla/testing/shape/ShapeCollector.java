@@ -9,21 +9,11 @@ public class ShapeCollector {
     public boolean addFigure(Shape shape){
         shapes.add(shape);
 
-        if (shapes.contains(shape)) {
-            return true;
-        }   else {
-            return false;
-        }
+        return shapes.contains(shape);
     }
 
     public boolean removeFigure(Shape shape){
-
-        if (shapes.contains(shape)){
-            shapes.remove(shape);
-            return true;
-        }   else {
-            return false;
-        }
+        return shapes.remove(shape);
     }
 
     public Shape getFigure(int n){

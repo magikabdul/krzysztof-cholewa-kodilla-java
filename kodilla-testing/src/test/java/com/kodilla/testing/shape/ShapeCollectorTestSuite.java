@@ -107,15 +107,13 @@ public class ShapeCollectorTestSuite {
     public void testShowFiguresWhenNoFigures(){
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        List<Shape> expectedList = new ArrayList<>();
-        boolean isExpectedListEmpty = expectedList.isEmpty();
 
         //When
         List<Shape> resultList = shapeCollector.showFigures();
         boolean isResultListEmpty = resultList.isEmpty();
 
         //Then
-        Assert.assertEquals(isExpectedListEmpty, isResultListEmpty);
+        Assert.assertTrue(isResultListEmpty);
     }
 
     @Test
