@@ -8,37 +8,52 @@ public class ForumStats {
     private double averageValueCommentsPerUser = 0;
     private double averageValueCommentsPerPost = 0;
 
-    public int getUsersQuantity(Statistics statistics){
+    private int countUsersQuantity(Statistics statistics){
         return statistics.userNames().size();
     }
 
-    public int getPostQuantity(Statistics statistics){
+    private int countPostQuantity(Statistics statistics){
         return statistics.postsCount();
     }
 
-    public int getCommentsQuantity(Statistics statistics){
+    private int countCommentsQuantity(Statistics statistics){
         return statistics.commentsCount();
     }
 
-    public double countAvaregePostsPerUser(Statistics statistics){
-        return getPostQuantity(statistics) / getUsersQuantity(statistics);
+    private double countAveragePostsPerUser(){
+
+        if (usersQuantity > 0){
+            return postsQuantity / usersQuantity;
+        }   else {
+            return -1;
+        }
     }
 
-    public double countAvaregeCommentsPerUser(Statistics statistics){
-        return getCommentsQuantity(statistics) / getUsersQuantity(statistics);
+    private double countAverageCommentsPerUser(){
+
+        if (usersQuantity > 0) {
+            return commentsQuantity / usersQuantity;
+        }   else {
+            return -1;
+        }
     }
 
-    public double countAvaregeCommertsPerPost(Statistics statistics){
-        return getCommentsQuantity(statistics) / getPostQuantity(statistics);
+    private double countAverageCommentsPerPost(){
+
+        if (postsQuantity > 0){
+            return commentsQuantity / postsQuantity;
+        }   else {
+            return -1;
+        }
     }
 
     public void calculateAdvStatistics(Statistics statistics){
-        usersQuantity = getUsersQuantity(statistics);
-        postsQuantity = getPostQuantity(statistics);
-        commentsQuantity = getCommentsQuantity(statistics);
-        averageValuePostsPerUser = countAvaregePostsPerUser(statistics);
-        averageValueCommentsPerUser = countAvaregeCommentsPerUser(statistics);
-        averageValueCommentsPerPost = countAvaregeCommertsPerPost(statistics);
+        usersQuantity = countUsersQuantity(statistics);
+        postsQuantity = countPostQuantity(statistics);
+        commentsQuantity = countCommentsQuantity(statistics);
+        averageValuePostsPerUser = countAveragePostsPerUser();
+        averageValueCommentsPerUser = countAverageCommentsPerUser();
+        averageValueCommentsPerPost = countAverageCommentsPerPost();
     }
 
     public void showStatistics(Statistics statistics){
@@ -49,5 +64,29 @@ public class ForumStats {
         System.out.println("Average value posts per user: " + averageValuePostsPerUser);
         System.out.println("Average value comments per user: " + averageValueCommentsPerUser);
         System.out.println("Average value comments per post: " + averageValueCommentsPerPost);
+    }
+
+    public int getUsersQuantity() {
+        return usersQuantity;
+    }
+
+    public int getPostsQuantity() {
+        return postsQuantity;
+    }
+
+    public int getCommentsQuantity() {
+        return commentsQuantity;
+    }
+
+    public double getAverageValuePostsPerUser() {
+        return averageValuePostsPerUser;
+    }
+
+    public double getAverageValueCommentsPerUser() {
+        return averageValueCommentsPerUser;
+    }
+
+    public double getAverageValueCommentsPerPost() {
+        return averageValueCommentsPerPost;
     }
 }
