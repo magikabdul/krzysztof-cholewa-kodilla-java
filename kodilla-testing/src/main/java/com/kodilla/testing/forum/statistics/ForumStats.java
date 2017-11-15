@@ -23,7 +23,7 @@ public class ForumStats {
     private double countAveragePostsPerUser(){
 
         if (usersQuantity > 0){
-            return postsQuantity / usersQuantity;
+            return (double)postsQuantity / usersQuantity;
         }   else {
             return -1;
         }
@@ -32,7 +32,7 @@ public class ForumStats {
     private double countAverageCommentsPerUser(){
 
         if (usersQuantity > 0) {
-            return commentsQuantity / usersQuantity;
+            return (double)commentsQuantity / usersQuantity;
         }   else {
             return -1;
         }
@@ -41,7 +41,7 @@ public class ForumStats {
     private double countAverageCommentsPerPost(){
 
         if (postsQuantity > 0){
-            return commentsQuantity / postsQuantity;
+            return (double) commentsQuantity / postsQuantity;
         }   else {
             return -1;
         }
