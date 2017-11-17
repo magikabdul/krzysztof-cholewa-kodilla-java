@@ -110,6 +110,7 @@ public class BookDirectoryTestSuite {
          //Then
          assertEquals(0, theListOfBooks.size());
          assertEquals(expectedList, theListOfBooks);
+         verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
      }
 
     @Test
@@ -129,6 +130,7 @@ public class BookDirectoryTestSuite {
         //Then
         assertEquals(1, theListOfBooks.size());
         assertEquals(expectedList, theListOfBooks);
+        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
     }
 
     @Test
@@ -148,5 +150,6 @@ public class BookDirectoryTestSuite {
         //Then
         assertEquals(5, theListOfBooks.size());
         assertEquals(expectedList, theListOfBooks);
+        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
     }
 }
