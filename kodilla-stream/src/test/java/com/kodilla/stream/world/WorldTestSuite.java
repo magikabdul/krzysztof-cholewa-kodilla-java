@@ -65,6 +65,7 @@ public class WorldTestSuite {
         africa.addCountry(country4);
         africa.addCountry(country5);
         africa.addCountry(country6);
+        africa.addCountry(country1);
 
         asia.addCountry(country7);
         asia.addCountry(country8);
@@ -79,7 +80,7 @@ public class WorldTestSuite {
         BigDecimal result = world.getPeopleQuantity();
 
         //Then
-        BigDecimal expectet = new BigDecimal("460000000");
-        Assert.assertEquals(expectet, result);
+        BigDecimal expected = new BigDecimal("460000000");
+        Assert.assertEquals(expected, result);
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class Continent {
-    private final Set<Country> continent = new HashSet<>();
+    private final Set<Country> countries = new HashSet<>();
     private final String continentName;
 
     public Continent(String continentName) {
@@ -12,11 +12,11 @@ public final class Continent {
     }
 
     public Set<Country> getCountries(){
-        return continent;
+        return countries;
     }
 
     public void addCountry(Country country) {
-        continent.add(country);
+        countries.add(country);
     }
 
     //public Set<Country> getPeople
