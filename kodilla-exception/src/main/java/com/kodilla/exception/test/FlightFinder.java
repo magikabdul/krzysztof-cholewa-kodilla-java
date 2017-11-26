@@ -6,6 +6,8 @@ import java.util.Map;
 public class FlightFinder {
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException {
+
+
         Map<String, Boolean> isAirportAvailable = new HashMap<>();
 
         isAirportAvailable.put("London", true);
@@ -17,38 +19,16 @@ public class FlightFinder {
         isAirportAvailable.put("New York", true);
 
         if (isAirportAvailable.containsKey(flight.getDepartureAirport()) && isAirportAvailable.containsKey(flight.getArrivalAirport())) {
-
-            if(!flight.getDepartureAirport().equals(flight.getArrivalAirport())) {
-                for (Map.Entry port1 : isAirportAvailable.entrySet()) {
-                    if (port1.getKey().equals(flight.getDepartureAirport())) {
-                        if (port1.getValue().equals(true)) {
-                            System.out.println("\nFirst airport " + port1.getKey() + " is on list and is available");
-
-                            for (Map.Entry port2 : isAirportAvailable.entrySet()) {
-                                if (port2.getKey().equals(flight.getArrivalAirport())) {
-                                    if (port2.getValue().equals(true)) {
-                                        System.out.println("Second airport " + port2.getKey() + " is on list and is available");
-                                        return true;
-                                    } else {
-                                        System.out.println("Second airport " + port2.getKey() + " is on list but isn't available");
-                                        return false;
-                                    }
-                                }
-                            }
-
-                        } else {
-                            System.out.println("\nFirst airport " + port1.getKey() + " is on list but isn't available");
-                            return false;
-                        }
-                    }
-                }
-
-                return false;
-            }   else {
+            if (flight.getDepartureAirport().equals(flight.getArrivalAirport())) {
                 System.out.println("\nFirst and second airport are on list but are the same --- " + flight.getDepartureAirport());
                 return false;
+            } else if (isAirportAvailable.get(flight.getDepartureAirport()).equals(true) && isAirportAvailable.get(flight.getArrivalAirport()).equals(true)) {
+                System.out.println("\nConnection between " + flight.getDepartureAirport() + " and " + flight.getArrivalAirport() + " is available");
+                return true;
+            } else {
+                System.out.println("\nConnection between " + flight.getDepartureAirport() + " and " + flight.getArrivalAirport() + " isn't available");
+                return false;
             }
-
         } else {
             throw new RouteNotFoundException();
         }
