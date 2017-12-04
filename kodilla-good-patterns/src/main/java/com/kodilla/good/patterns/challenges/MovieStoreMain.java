@@ -10,7 +10,7 @@ public class MovieStoreMain {
 
          String singleStringWithExclamations = movieStore.getMovies().entrySet().stream()
                 .flatMap(stringListEntry -> stringListEntry.getValue().stream())
-                .map(s -> s.substring(0, s.length()))
+                //.map(s -> s.substring(0, s.length()))
                 .collect(Collectors.joining("!"));
 
          System.out.println(singleStringWithExclamations);
