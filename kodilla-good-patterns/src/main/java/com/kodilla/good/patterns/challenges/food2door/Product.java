@@ -1,11 +1,20 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-public interface Product {
+public class Product {
 
-    String name = null;
-    String type = null;
-    String unit = null;
-    double availableQuantity = 0;
+    private String name;
+    private String unit;
 
+    public Product(String name, String unit) {
+        this.name = name;
+        this.unit = unit;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
 }

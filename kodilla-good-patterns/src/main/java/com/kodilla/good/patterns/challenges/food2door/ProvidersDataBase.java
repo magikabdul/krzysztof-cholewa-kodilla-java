@@ -7,12 +7,23 @@ public class ProvidersDataBase {
 
     private Map<Company, Product> companyProductMap = new HashMap<>();
 
-    public boolean addCompany(Company company) {
-        if (company instanceof Company && company != null) {
-            companyProductMap.put(company, null);
+    public boolean addProvider(FoodProvider foodProvider) {
+
+        if (foodProvider instanceof FoodProvider) {
+            companyProductMap.put(foodProvider.getCompany(), foodProvider.getProduct());
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public boolean isProviderOnList(Company company) {
+
+        if (companyProductMap.containsKey(company)) {
             return true;
         } else {
             return false;
         }
+
     }
 }
