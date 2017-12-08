@@ -4,13 +4,11 @@ public class MainApplication {
 
     public static void main(String[] args) {
 
-        Company company = new Company("TheFood");
+        CreateBaseOfProviders creator = new CreateBaseOfProviders();
+        ProvidersDataBase providers = creator.createProviders();
 
-        FoodProvider foodProvider1 = new FoodProvider(company, new Product("Beans", "kg"));
+        System.out.println(providers.getProvidersList());
+        System.out.println(providers.getProvider());
 
-        ProvidersDataBase providers = new ProvidersDataBase();
-
-        providers.addProvider(foodProvider1);
-        System.out.println(providers.isProviderOnList(company));
     }
 }
