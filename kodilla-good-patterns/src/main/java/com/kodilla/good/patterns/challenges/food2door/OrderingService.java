@@ -2,5 +2,7 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 public interface OrderingService {
 
-    boolean sendOrder(Product product, String unit, double quantity);
+    default void placeOrder() {
+        System.out.println("\nSending order to Provider");
+    }
 }
