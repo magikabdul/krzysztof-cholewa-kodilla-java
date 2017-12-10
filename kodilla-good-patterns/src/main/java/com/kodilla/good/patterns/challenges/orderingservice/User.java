@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.orderingservice;
 
 public class User {
 
@@ -16,10 +16,5 @@ public class User {
 
     public String getLastName() {
         return lastName;
-    }
-
-    @Override
-    public String toString() {
-        return firstName + ' ' + lastName;
     }
 }
