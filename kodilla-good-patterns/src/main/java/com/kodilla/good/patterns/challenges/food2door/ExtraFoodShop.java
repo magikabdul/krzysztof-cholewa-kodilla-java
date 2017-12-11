@@ -1,12 +1,12 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-public class ExtraFoodShop implements Provider {
+public class ExtraFoodShop {
 
     private final String NAME = "ExtraFoodShop";
 
     private ProviderOrderingService orderingService = new ProviderOrderingService();
 
-    @Override
+    //@Override
     public boolean process() {
 
         orderingService.placeOrder();
