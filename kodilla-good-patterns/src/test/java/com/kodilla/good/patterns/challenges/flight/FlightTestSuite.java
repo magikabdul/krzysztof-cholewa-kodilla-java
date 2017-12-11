@@ -40,9 +40,13 @@ public class FlightTestSuite {
         FlightListMaker.make(flightList);
 
         //When
-        List<Flight> result = FlightFinder.findFlightsThrough(flightList, "Krakow", "Warszawa");
+        List<Flight> result1 = FlightFinder.findFlightsThrough(flightList, "Krakow", "Warszawa");
+        List<Flight> result2 = FlightFinder.findFlightsThrough(flightList, "Lodz", "Warszawa");
+        List<Flight> result3 = FlightFinder.findFlightsThrough(flightList, "Rzeszow", "Warszawa");
 
         //Then
-        Assert.assertEquals(2, result.size());
+        Assert.assertEquals(4, result1.size());
+        Assert.assertEquals(2, result2.size());
+        Assert.assertEquals(0, result3.size());
     }
 }
