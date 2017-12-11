@@ -9,7 +9,7 @@ public class Application {
 
         FlightFinder.findFlightsFrom(flightList, "Krakow");
         FlightFinder.findFlightsTo(flightList, "Wroclaw");
-        FlightFinder.findFlightsThrough(flightList,"Krakow", "Warszawa", "Gdansk");
-        FlightFinder.findFlightsThrough(flightList,"Poznan", "Warszawa", "Gdansk");
+//        FlightFinder.findFlightsThrough(flightList,"Krakow", "Warszawa", "Gdansk");
+//        FlightFinder.findFlightsThrough(flightList,"Poznan", "Warszawa", "Gdansk");
     }
 }
