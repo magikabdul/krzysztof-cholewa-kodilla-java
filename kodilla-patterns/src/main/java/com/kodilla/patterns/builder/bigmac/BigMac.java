@@ -1,11 +1,12 @@
 package com.kodilla.patterns.builder.bigmac;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BigMac {
     public final static String ROLL_REGULAR = "REGULAR";
-    public final static String ROLL_SEZAME = "SESAME";
+    public final static String ROLL_SESAME = "SESAME";
 
     public final static String SAUCE_STANDARD = "STANDARD";
     public final static String SAUCE_1000_ISLAND = "1000_ISLAND";
@@ -19,6 +20,17 @@ public class BigMac {
     public final static String INGREDIENTS_MUSHROOMS = "MUSHROOMS";
     public final static String INGREDIENTS_SHRIMPS = "SHRIMPS";
     public final static String INGREDIENTS_CHEESE = "CHEESE";
+
+    public final static List<String> ROLLS = Arrays.asList(ROLL_REGULAR, ROLL_SESAME);
+    public final static List<String> SAUCES = Arrays.asList(SAUCE_STANDARD, SAUCE_1000_ISLAND, SAUCE_BARBECUE);
+    public final static List<String> INGREDIENTS = Arrays.asList(INGREDIENTS_LETTUCE,
+                                                                    INGREDIENTS_ONION,
+                                                                    INGREDIENTS_BACON,
+                                                                    INGREDIENTS_CUCUMBER,
+                                                                    INGREDIENTS_CHILI,
+                                                                    INGREDIENTS_MUSHROOMS,
+                                                                    INGREDIENTS_SHRIMPS,
+                                                                    INGREDIENTS_CHEESE);
 
     private final String roll;
     private final int burgers;
@@ -68,7 +80,7 @@ public class BigMac {
         private List<String> ingredients = new ArrayList<>();
 
         public BigMacBuilder roll(String roll) {
-            if (roll.equals(BigMac.ROLL_REGULAR) || roll.equals(BigMac.ROLL_SEZAME)) {
+            if (ROLLS.contains(roll)) {
                 this.roll = roll;
                 return this;
             } else {
@@ -86,9 +98,7 @@ public class BigMac {
         }
 
         public BigMacBuilder sauce(String sauce) {
-            if (sauce.equals(BigMac.SAUCE_STANDARD) ||
-                    sauce.equals(BigMac.SAUCE_1000_ISLAND) ||
-                    sauce.equals(BigMac.SAUCE_BARBECUE)) {
+            if (SAUCES.contains(sauce)) {
                 this.sauce = sauce;
                 return this;
             } else {
@@ -97,14 +107,7 @@ public class BigMac {
         }
 
         public BigMacBuilder ingredient(String ingredient) {
-            if (ingredient.equals(BigMac.INGREDIENTS_LETTUCE) ||
-                    ingredient.equals(BigMac.INGREDIENTS_ONION) ||
-                    ingredient.equals(BigMac.INGREDIENTS_BACON) ||
-                    ingredient.equals(BigMac.INGREDIENTS_CUCUMBER) ||
-                    ingredient.equals(BigMac.INGREDIENTS_CHILI) ||
-                    ingredient.equals(BigMac.INGREDIENTS_MUSHROOMS) ||
-                    ingredient.equals(BigMac.INGREDIENTS_SHRIMPS) ||
-                    ingredient.equals(BigMac.INGREDIENTS_CHEESE)) {
+            if (INGREDIENTS.contains(ingredient)) {
                 ingredients.add(ingredient);
             } else {
                 throw new IllegalStateException("Ingredient not available");

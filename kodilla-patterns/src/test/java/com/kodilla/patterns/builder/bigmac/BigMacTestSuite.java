@@ -9,7 +9,7 @@ public class BigMacTestSuite {
     public void testBigMacBuild() {
         //Given
         BigMac burger = new BigMac.BigMacBuilder()
-                .roll(BigMac.ROLL_SEZAME)
+                .roll(BigMac.ROLL_SESAME)
                 .burgers(3)
                 .sauce(BigMac.SAUCE_BARBECUE)
                 .ingredient(BigMac.INGREDIENTS_LETTUCE)
@@ -28,10 +28,25 @@ public class BigMacTestSuite {
         int result = burger.getIngredients().size();
 
         //Then
-        //Assert.assertEquals(BigMac.ROLL_SEZAME, roll);
+        Assert.assertEquals(BigMac.ROLL_SESAME, roll);
         Assert.assertEquals(3, quantityOfBurger);
         Assert.assertEquals(BigMac.SAUCE_BARBECUE, sauce);
         Assert.assertEquals(5, result);
         Assert.assertFalse(burger.getIngredients().contains(BigMac.INGREDIENTS_MUSHROOMS));
+    }
+
+    @Test
+    public void testBigMacUnsupportedElement() {
+        //Given
+
+        //When
+        try {
+            BigMac burger = new BigMac.BigMacBuilder()
+                    .roll("ABC")
+                    .build();
+        } catch (IllegalStateException e) {
+            //Then
+            Assert.assertEquals("We have only regular and sesame rolls", e.getMessage());
+        }
     }
 }
