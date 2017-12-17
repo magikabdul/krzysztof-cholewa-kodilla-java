@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FlightFinder {
+public final class FlightFinder {
+    private final FlightList flightList;
 
-    public static List<Flight> findFlightsFrom(FlightList flightList, String airport) {
+    public FlightFinder(FlightList flightList) {
+        this.flightList = flightList;
+    }
+
+    public List<Flight> findFlightsFrom(String airport) {
 
         System.out.println("Searching flight from: " + airport + "\n");
 
@@ -15,7 +20,7 @@ public class FlightFinder {
                 .collect(Collectors.toList());
     }
 
-    public static List<Flight> findFlightsTo(FlightList flightList, String airport) {
+    public List<Flight> findFlightsTo(String airport) {
 
         System.out.println("Searching flight to: " + airport + "\n");
 
@@ -24,7 +29,7 @@ public class FlightFinder {
                 .collect(Collectors.toList());
     }
 
-    public static List<Flight> findFlightsThrough(FlightList flightList, String airportOfStart, String airportOfDestination) {
+    public List<Flight> findFlightsThrough(String airportOfStart, String airportOfDestination) {
 
         List<Flight> list1 = flightList.flights.stream()
                 .filter(flight -> flight.getAirportOfStart().equals(airportOfStart))
