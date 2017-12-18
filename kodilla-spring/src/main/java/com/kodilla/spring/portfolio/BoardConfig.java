@@ -9,18 +9,13 @@ import java.util.List;
 @Configuration
 public class BoardConfig {
 
-//    @Autowired
-//    @Qualifier("toDoList")
-//    TaskList taskList;
-
     @Bean
     public Board createBoard() {
-        return new Board();
+        return new Board(createToDoList(), createInProgressList(), createDoneList());
     }
 
 
-    @Bean//(name = "toDoList")
-    //@Scope("prototype")
+    @Bean
     public TaskList createToDoList() {
         List<String> list = new ArrayList<>();
 
@@ -31,8 +26,7 @@ public class BoardConfig {
         return new TaskList(list);
     }
 
-    @Bean//(name = "inProgressList")
-    //@Scope("prototype")
+    @Bean
     public TaskList createInProgressList() {
         List<String> list = new ArrayList<>();
 

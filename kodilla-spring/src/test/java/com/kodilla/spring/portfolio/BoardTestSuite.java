@@ -11,15 +11,11 @@ public class BoardTestSuite {
     public void testTaskAdd() {
         //Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.portfolio");
-        Board board = context.getBean(Board.class);
-        board.addTaskList(Board.TASK_TYPE_TO_DO, context.getBean("createToDoList", TaskList.class));
-        board.addTaskList(Board.TASK_TYPE_IN_PROGRESS, context.getBean("createInProgressList", TaskList.class));
-        board.addTaskList(Board.TASK_TYPE_DONE, context.getBean("createDoneList", TaskList.class));
 
         //When
-        int toDoListSize = context.getBean(Board.class).getTaskList(Board.TASK_TYPE_TO_DO).getTasks().size();
-        int inProgressListSize = context.getBean(Board.class).getTaskList(Board.TASK_TYPE_IN_PROGRESS).getTasks().size();
-        int doneListSize = context.getBean(Board.class).getTaskList(Board.TASK_TYPE_DONE).getTasks().size();
+        int toDoListSize = context.getBean(Board.class).getToDoList().getTasks().size();  //getTaskList(Board.TASK_TYPE_TO_DO).getTasks().size();
+        int inProgressListSize = context.getBean(Board.class).getInProgressList().getTasks().size();    //getTaskList(Board.TASK_TYPE_IN_PROGRESS).getTasks().size();
+        int doneListSize = context.getBean(Board.class).getDoneList().getTasks().size();    //getTaskList(Board.TASK_TYPE_DONE).getTasks().size();
 
         //Then
         Assert.assertEquals(5, toDoListSize);
@@ -34,7 +30,7 @@ public class BoardTestSuite {
 
         //When @ Then
         try {
-            context.getBean(Board.class).getTaskList(Board.TASK_TYPE_DONE).getTasks().size();
+            context.getBean(Board.class).getToDoList().getTasks().size();
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
