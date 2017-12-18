@@ -2,14 +2,15 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
-public class GlutenFreeShop implements Provider{
+public class GlutenFreeShop implements Provider {
 
-    private final String NAME = "GlutenFreeShop";
+    private final String NAME = "Gluten Free Shop";
     private ProviderOrderingService orderingService = new ProviderOrderingService();
 
-    private Map<Product, Double> productMap = new HashMap<>();
+    private Map<Product, Integer> productMap = new HashMap<>();
 
     @Override
     public String getProviderName() {
@@ -18,10 +19,11 @@ public class GlutenFreeShop implements Provider{
 
     @Override
     public boolean addProduct(Product product) {
+        Random r = new Random();
 
         if (product != null) {
             if (!productMap.containsKey(product)) {
-                productMap.put(product, (double) 0);
+                productMap.put(product, r.nextInt(1000));
                 return true;
             } else {
                 System.out.println("Provider already has in his offer product " + product);
@@ -43,18 +45,50 @@ public class GlutenFreeShop implements Provider{
     }
 
     @Override
-    public double getProductQuantity(Product product) {
+    public int getProductQuantity(Product product) {
+        for (Map.Entry<Product, Integer> p : productMap.entrySet()) {
+            if (p.getKey().equals(product)) {
+                return p.getValue();
+            }
+        }
         return 0;
     }
 
 
 
     @Override
-    public boolean process() {
+    public boolean process(Product product, int quantity) {
 
         orderingService.placeOrder();
 
-        System.out.println("Making order in " + NAME + "\n");
+        System.out.println("Making order in " + NAME + " of " + product);
+
+        for (Map.Entry<Product, Integer> storage : productMap.entrySet()) {
+            if (storage.getKey().equals(product)) {
+                storage.setValue(storage.getValue() - quantity);
+            }
+        }
+
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return NAME;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GlutenFreeShop that = (GlutenFreeShop) o;
+
+        return NAME.equals(that.NAME);
+    }
+
+    @Override
+    public int hashCode() {
+        return NAME.hashCode();
     }
 }

@@ -11,7 +11,7 @@ public interface Provider {
 
     Set<Product> getProductList();
 
-    double getProductQuantity(Product product);
+    int getProductQuantity(Product product);
 
-    boolean process();
+    boolean process(Product product, int quantity);
 }

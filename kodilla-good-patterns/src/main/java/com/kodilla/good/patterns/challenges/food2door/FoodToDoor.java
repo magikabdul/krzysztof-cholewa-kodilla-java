@@ -1,17 +1,20 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 public class FoodToDoor {
+    public final static String PRODUCT_BREAD = "BREAD";
+    public final static String PRODUCT_CHICKEN = "CHICKEN";
+    public final static String PRODUCT_TOMATO = "TOMATO";
+    public final static String PRODUCT_ORANGE = "ORANGE";
+    public final static String PRODUCT_CHEESE = "CHEESE";
+    public final static String PRODUCT_WHEAT = "WHEAT";
 
-
-    private List<Provider> providerList = new LinkedList<>();
-    private List<Customer> customerList = new LinkedList<>();
+    private Set<Provider> providerList = new HashSet<>();
+    private Set<Customer> customerList = new HashSet<>();
 
     public boolean addProvider(Provider provider) {
-
         if (provider != null) {
             providerList.add(provider);
             return true;
@@ -20,27 +23,21 @@ public class FoodToDoor {
         }
     }
 
-    public List<Provider> getProviderList() {
+    public Set<Provider> getProviderList() {
         return providerList;
     }
 
-    public boolean addProductForProvider(Provider provider, Product product) {
-
-        if (provider != null && product != null) {
-            //provider.addProduct(product) ? return true : return false;    ---- co jest złego w tym zapisie
-            if (provider.addProduct(product)) {
-                return true;
-            } else {
-                return false;
-            }
+    public boolean addProduct(Provider provider, Product product) {
+        if (providerList.contains(provider)) {
+            provider.addProduct(product);
+            return true;
         } else {
+            System.out.println("Unregistered provider, please add him first");
             return false;
         }
     }
 
-
-    public Set<Product> getProviderProductList(Provider provider) {
-
+    public Set<Product> getProductList(Provider provider) {
         if (providerList.contains(provider)) {
             return provider.getProductList();
         } else {
@@ -48,34 +45,33 @@ public class FoodToDoor {
         }
     }
 
-//
-//    public boolean addCustomer(Customer customer) {
-//
-//        if (customer != null) {
-//            customerList.add(customer);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    public boolean makeCustomerOrder(Customer customer, Product product, double quantity) {
-//
-//        System.out.println("Dear Mr/Mrs " + customer.getName() +
-//                " your order of " + product +
-//                " of " + quantity + " " + product.getUnit() +
-//                " is processing...");
-//
-//        if (product.getQuantity() >= quantity) {
-//            product.takeOffTheState(quantity);
-//            System.out.println("Order finished, please wait for delivery");
-//            System.out.println("Current product quantity: " + product.getQuantity() + "\n\n");
-//            return true;
-//        } else {
-//            System.out.println("Quantity of " + product +
-//                    " is under requested. Product will be available within three days");
-//            product.buyProduct();
-//            return false;
-//        }
-//    }
+    public int getProductQuantity(Provider provider, Product product) {
+        if (providerList.contains(provider)) {
+            return provider.getProductQuantity(product);
+        }
+        return 0;
+    }
+
+    public Set<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public boolean addCustomer(Customer customer) {
+        customerList.add(customer);
+        return true;
+    }
+
+    public boolean orderProduct(Customer customer, Product product, int quantity) {
+        System.out.println("Processing order for customer " + customer.getName());
+
+        for (Provider p : providerList) {
+            if (p.getProductList().contains(product)) {
+                if (p.getProductQuantity(product) >= quantity) {
+                    return p.process(product, quantity);
+                }
+            }
+        }
+        System.out.println("Processing order - false");
+        return false;
+    }
 }
