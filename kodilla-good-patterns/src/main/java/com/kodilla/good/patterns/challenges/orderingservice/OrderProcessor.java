@@ -14,6 +14,10 @@ public class OrderProcessor {
         this.orderingRepository = orderingRepository;
     }
 
+    public OrderingRepository getOrderingRepository() {
+        return orderingRepository;
+    }
+
     public OrderingDto process(final OrderRequest orderRequest) {
 
         boolean isOrdered = orderingService.order(orderRequest.getUser(), orderRequest.getProduct());
@@ -21,9 +25,11 @@ public class OrderProcessor {
         if (isOrdered) {
             informationService.inform(orderRequest.getUser());
             orderingRepository.createOrder(orderRequest.getUser(), orderRequest.getProduct(), orderRequest.getOrderDate());
-            return new OrderingDto(orderRequest.getUser(), true);
+            //return new OrderingDto(orderRequest.getUser(), true);
         } else {
-            return new OrderingDto(orderRequest.getUser(), false);
+            System.out.println("Order of " + orderRequest.getProduct().getName() + " for Mr/Mrs " + orderRequest.getUser().getLastName() + " can't be finished");
+//            return new OrderingDto(orderRequest.getUser(), false);
         }
+        return new OrderingDto(orderRequest.getUser(), isOrdered);
     }
 }

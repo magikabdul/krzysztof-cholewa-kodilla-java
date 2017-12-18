@@ -5,11 +5,14 @@ public class Application {
     public static void main(String[] args) {
 
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
-        OrderRequest orderRequest = orderRequestRetriever.retrieve();
 
         OrderProcessor orderProcessor = new OrderProcessor(
                 new BuyerInformationService(), new ShopOrderingService(), new ShopOrderingRepository());
 
-        orderProcessor.process(orderRequest);
+        orderRequestRetriever.retrieve().stream()
+                .forEach(orderProcessor::process);
+
+        System.out.println("\n   >> Current data base entries list: ");
+        orderProcessor.getOrderingRepository().showCurrentBaseOfOrders();
     }
 }
