@@ -46,12 +46,13 @@ public class GlutenFreeShop implements Provider {
 
     @Override
     public int getProductQuantity(Product product) {
-        for (Map.Entry<Product, Integer> p : productMap.entrySet()) {
-            if (p.getKey().equals(product)) {
-                return p.getValue();
-            }
-        }
-        return 0;
+        return productMap.get(product);
+//        for (Map.Entry<Product, Integer> p : productMap.entrySet()) {
+//            if (p.getKey().equals(product)) {
+//                return p.getValue();
+//            }
+//        }
+//        return 0;
     }
 
 
@@ -61,13 +62,15 @@ public class GlutenFreeShop implements Provider {
 
         orderingService.placeOrder();
 
-        System.out.println("Making order in " + NAME + " of " + product);
+        System.out.println("Making order in " + NAME + " of " + product + "\n");
 
-        for (Map.Entry<Product, Integer> storage : productMap.entrySet()) {
-            if (storage.getKey().equals(product)) {
-                storage.setValue(storage.getValue() - quantity);
-            }
-        }
+        productMap.put(product, productMap.get(product) - quantity);
+
+//        for (Map.Entry<Product, Integer> storage : productMap.entrySet()) {
+//            if (storage.getKey().equals(product)) {
+//                storage.setValue(storage.getValue() - quantity);
+//            }
+//        }
 
         return true;
     }

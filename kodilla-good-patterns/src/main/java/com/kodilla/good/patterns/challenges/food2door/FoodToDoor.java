@@ -4,12 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FoodToDoor {
-    public final static String PRODUCT_BREAD = "BREAD";
-    public final static String PRODUCT_CHICKEN = "CHICKEN";
-    public final static String PRODUCT_TOMATO = "TOMATO";
-    public final static String PRODUCT_ORANGE = "ORANGE";
-    public final static String PRODUCT_CHEESE = "CHEESE";
-    public final static String PRODUCT_WHEAT = "WHEAT";
 
     private Set<Provider> providerList = new HashSet<>();
     private Set<Customer> customerList = new HashSet<>();
@@ -71,7 +65,8 @@ public class FoodToDoor {
                 }
             }
         }
-        System.out.println("Processing order - false");
+
+        System.out.println("--- Processing order for " + customer.getName() + " of " + product.getName() + " - false ---");
         return false;
     }
 }

@@ -5,17 +5,15 @@ public class Application {
     public static void main(String[] args) {
 
         Customer customer = new Customer("John Snow", "snow st.");
-        FoodToDoor foodToDoor = new FoodToDoor();
+        FoodToDoor foodToDoor = MakeApplicationData.build();
 
-        MakeApplicationData.build(foodToDoor);
+        ConsoleLogger.showProvidersList(foodToDoor.getProviderList());
+        ConsoleLogger.showProvidersProduct(foodToDoor.getProviderList());
 
-        ConsoleLogger.showProvidersList(foodToDoor);
-        ConsoleLogger.showProvidersProduct(foodToDoor);
+        foodToDoor.orderProduct(customer, new Product(MakeApplicationData.PRODUCT_CHICKEN), 20);
+        foodToDoor.orderProduct(customer, new Product(MakeApplicationData.PRODUCT_CHEESE), 10);
+        foodToDoor.orderProduct(customer, new Product(MakeApplicationData.PRODUCT_ORANGE), 250);
 
-        foodToDoor.orderProduct(customer, new Product(FoodToDoor.PRODUCT_CHICKEN), 20);
-        foodToDoor.orderProduct(customer, new Product(FoodToDoor.PRODUCT_CHEESE), 10);
-        foodToDoor.orderProduct(customer, new Product(FoodToDoor.PRODUCT_ORANGE), 250);
-
-        ConsoleLogger.showProvidersProduct(foodToDoor);
+        ConsoleLogger.showProvidersProduct(foodToDoor.getProviderList());
     }
 }
