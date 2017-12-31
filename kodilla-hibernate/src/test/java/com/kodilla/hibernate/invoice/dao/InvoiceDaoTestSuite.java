@@ -29,11 +29,16 @@ public class InvoiceDaoTestSuite {
         Product product2 = new Product("Water");
         Product product3 = new Product("Sugar");
 
+        Invoice invoice = new Invoice("1/2017");
+
         Item item1 = new Item(product1, new BigDecimal(1999), 1, new BigDecimal(1999));
         Item item2 = new Item(product2, new BigDecimal(1), 12, new BigDecimal(12));
         Item item3 = new Item(product3, new BigDecimal(2), 3, new BigDecimal(6));
 
-        Invoice invoice = new Invoice("1/2017");
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice);
+        item3.setInvoice(invoice);
+
         invoice.getItems().add(item1);
         invoice.getItems().add(item2);
         invoice.getItems().add(item3);
