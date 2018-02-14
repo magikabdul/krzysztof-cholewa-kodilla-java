@@ -30,11 +30,9 @@ public final class SearchFacade {
         companyDao.deleteAll();
     }
 
-    public void processSearchEmployee(String searchKey) throws SearchException {
-        String sKey = "%" + searchKey + "%";
-
-        LOGGER.info("Searching for employees matching to searching criteria: " + sKey);
-        List<Employee> list = employeeDao.findMatching(sKey);
+    public List<Employee> processSearchEmployee(String searchKey) throws SearchException {
+        LOGGER.info("Searching for employees matching to searching criteria: " + searchKey);
+        List<Employee> list = employeeDao.findMatching(searchKey);
 
         if (list.size() < 1) {
             LOGGER.error("No matching entries for search criteria");
@@ -46,14 +44,13 @@ public final class SearchFacade {
                 LOGGER.info(idx + ". " + employee.getLastName() + " " + employee.getFirstName());
                 idx++;
             }
+            return list;
         }
     }
 
-    public void processSearchCompany(String searchKey) throws SearchException {
-        String sKey = "%" + searchKey + "%";
-
-        LOGGER.info("Searching for company matching to searching criteria: " + sKey);
-        List<Company> list = companyDao.findMatching(sKey);
+    public List<Company> processSearchCompany(String searchKey) throws SearchException {
+        LOGGER.info("Searching for company matching to searching criteria: " + searchKey);
+        List<Company> list = companyDao.findMatching(searchKey);
 
         if (list.size() < 1) {
             LOGGER.error("No matching entries for search criteria");
@@ -65,6 +62,7 @@ public final class SearchFacade {
                 LOGGER.info(idx + ". " + company.getName());
                 idx++;
             }
+            return list;
         }
     }
 }
