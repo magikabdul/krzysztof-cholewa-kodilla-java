@@ -11,6 +11,11 @@ import java.util.List;
         resultClass = Company.class
 )
 
+@NamedQuery(
+        name = "Company.findMatching",
+        query = "FROM Company WHERE company_name LIKE :NAME"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

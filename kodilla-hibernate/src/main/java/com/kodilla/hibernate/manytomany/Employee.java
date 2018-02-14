@@ -5,10 +5,16 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQueries({
 @NamedQuery(
         name = "Employee.findByLastName",
         query = "FROM Employee WHERE lastName = :LASTNAME"
-)
+),
+
+@NamedQuery(
+        name = "Employee.findMatching",
+        query = "FROM Employee WHERE lastName LIKE :NAME"
+)})
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -68,5 +74,13 @@ public class Employee {
 
     private void setCompanies(List<Company> companies) {
         this.companies = companies;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
