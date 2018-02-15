@@ -89,7 +89,7 @@ public class ShopService {
             Order theOrder = orderIterator.next();
             boolean result = theOrder.isPaid();
             Random random = new Random();
-            if (theOrder.isVerified()) {
+            if (!theOrder.isVerified()) {
                 theOrder.setVerified(result && random.nextBoolean());
             }
             return theOrder.isVerified();

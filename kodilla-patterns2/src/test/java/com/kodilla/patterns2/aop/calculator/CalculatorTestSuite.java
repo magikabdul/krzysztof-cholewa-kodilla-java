@@ -74,7 +74,7 @@ public class CalculatorTestSuite {
         //Given
 
         //When
-        BigDecimal result = calculator.factotial(new BigDecimal(1000));
+        BigDecimal result = calculator.factorial(new BigDecimal(1000));
 
         //Then
         LOGGER.info("Testing factorial method");
