@@ -35,7 +35,7 @@ public class PizzaOrderTestSuite {
     public void testLargePizzaOrderGetCost() {
         //Given
         PizzaOrder pizzaOrder = new BasicPizzaOrder();
-        pizzaOrder = new LargePizzaOrder(pizzaOrder);
+        pizzaOrder = new LargePizzaOrderDecorator(pizzaOrder);
 
         //When
         BigDecimal theCost = pizzaOrder.getCost();
@@ -48,7 +48,7 @@ public class PizzaOrderTestSuite {
     public void testLargePizzaOrderGetDescription() {
         //Given
         PizzaOrder pizzaOrder = new BasicPizzaOrder();
-        pizzaOrder = new LargePizzaOrder(pizzaOrder);
+        pizzaOrder = new LargePizzaOrderDecorator(pizzaOrder);
 
         //When
         String description = pizzaOrder.getDescription();
@@ -61,7 +61,7 @@ public class PizzaOrderTestSuite {
     public void testMediumPizzaOrderWithExtraCheeseGetCost() {
         //Given
         PizzaOrder pizzaOrder = new BasicPizzaOrder();
-        pizzaOrder = new MediumPizzaOrder(pizzaOrder);
+        pizzaOrder = new MediumPizzaOrderDecorator(pizzaOrder);
         pizzaOrder = new AdditionalCheeseDecorator(pizzaOrder);
 
         //When
@@ -75,7 +75,7 @@ public class PizzaOrderTestSuite {
     public void testMediumPizzaOrderWithExtraCheeseGetDescription() {
         //Given
         PizzaOrder pizzaOrder = new BasicPizzaOrder();
-        pizzaOrder = new MediumPizzaOrder(pizzaOrder);
+        pizzaOrder = new MediumPizzaOrderDecorator(pizzaOrder);
         pizzaOrder = new AdditionalCheeseDecorator(pizzaOrder);
 
         //When
