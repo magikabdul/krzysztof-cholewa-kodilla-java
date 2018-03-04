@@ -30,4 +30,26 @@ public class StoredPostTestSuite {
         }
         Assert.assertEquals(0, howMany);
     }
+
+    @Test
+    public void testUpdateBestSellers() throws SQLException {
+        //Given
+        DbManager dbManager = DbManager.getInstance();
+        String sqlUpdate = "UPDATE BOOKS SET BESTSELLER = NULL";
+        Statement statement = dbManager.getConnection().createStatement();
+        statement.executeUpdate(sqlUpdate);
+
+        //When
+        String sqlProcedureCall = "CALL UpdateBestsellers()";
+        statement.execute(sqlProcedureCall);
+
+        //Then
+        String sqlCheckTable = "SELECT COUNT(*) IS_NULL FROM BOOKS WHERE BESTSELLER=NULL";
+        ResultSet rs = statement.executeQuery(sqlCheckTable);
+        int howMany = -1;
+        if (rs.next()) {
+            howMany = rs.getInt("IS_NULL");
+        }
+        Assert.assertEquals(0, howMany);
+    }
 }
