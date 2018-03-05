@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class StoredPostTestSuite {
+public class StoredProcTestSuite {
 
     @Test
     public void testUpdateVipLevels() throws SQLException {
@@ -44,7 +44,7 @@ public class StoredPostTestSuite {
         statement.execute(sqlProcedureCall);
 
         //Then
-        String sqlCheckTable = "SELECT COUNT(*) IS_NULL FROM BOOKS WHERE BESTSELLER=NULL";
+        String sqlCheckTable = "SELECT COUNT(*) IS_NULL FROM BOOKS WHERE BESTSELLER IS NULL";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
         int howMany = -1;
         if (rs.next()) {
