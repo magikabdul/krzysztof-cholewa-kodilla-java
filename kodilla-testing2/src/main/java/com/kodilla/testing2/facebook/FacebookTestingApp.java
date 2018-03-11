@@ -7,9 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class FacebookTestingApp {
-    private static final String XPATH_DAY = "//div[contains(@class, \"5k_5\")]/span/span/select[1]";
-    private static final String XPATH_MONTH = "//div[contains(@class, \"5k_5\")]/span/span/select[2]";
-    private static final String XPATH_YEAR = "//div[contains(@class, \"5k_5\")]/span/span/select[3]";
+    private static final String XPATH_SELECT = "//div[contains(@class, \"5k_5\")]/span/span/";
+    private static final String XPATH_DAY = XPATH_SELECT + "select[1]";
+    private static final String XPATH_MONTH = XPATH_SELECT + "select[2]";
+    private static final String XPATH_YEAR = XPATH_SELECT + "select[3]";
 
     public static void main(String[] args) {
 
@@ -26,6 +27,6 @@ public class FacebookTestingApp {
 
         WebElement comboYear = driver.findElement(By.xpath(XPATH_YEAR));
         Select selectYear = new Select(comboYear);
-        selectYear.selectByIndex(37);
+        selectYear.selectByValue("1984");
     }
 }
