@@ -106,14 +106,15 @@ public class CrudAppTestSuite {
 
         driver.switchTo().alert().accept();
 
-        driver.navigate().refresh();
-        Thread.sleep(2000);
+        //driver.navigate().refresh();
+        //Thread.sleep(2000);
 
         driver.findElements(By.xpath("//div[@class=\"datatable__tasks-container\"]/form")).stream()
                 .filter(theForm -> theForm.findElement(By.xpath(".//fieldset[1]")).getText().contains(taskName))
                 .forEach(theForm -> {
                     //System.out.println("Form: " + theForm.getText());
-                    WebElement deleteButton = theForm.findElement(By.xpath(".//button[4]"));
+                    WebElement deleteButton = theForm.findElement(By.xpath(".//button[@data-task-delete-button]"));
+                    //WebElement deleteButton = theForm.findElement(By.xpath(".//button[4]"));
                     //System.out.println("Button: " + deleteButton.getText());
                     deleteButton.click();
                 });
